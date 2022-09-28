@@ -32,6 +32,7 @@ func (iter *iterWindowCopy[T]) GetPtr() *[]T {
 	return &iter.win
 }
 
+// WindowCopy operates like Window but copying the values.
 func WindowCopy[T any](inner tl.Iter[T], n int) tl.Iter[[]T] {
 	return &iterWindowCopy[T]{
 		inner: inner,

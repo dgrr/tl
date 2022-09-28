@@ -5,16 +5,19 @@ type element[T any] struct {
 	next *element[T]
 }
 
+// Queue defines a queue data structure.
 type Queue[T any] struct {
 	first *element[T]
 	last  *element[T]
 }
 
+// Reset resets the queue.
 func (q *Queue[T]) Reset() {
 	q.first = nil
 	q.last = nil
 }
 
+// Front returns the first element if any.
 func (q *Queue[T]) Front() (v Optional[T]) {
 	if q.first != nil {
 		v.Set(q.first.data)
@@ -23,6 +26,7 @@ func (q *Queue[T]) Front() (v Optional[T]) {
 	return
 }
 
+// PushFront pushes `data` to the beginning of the queue.
 func (q *Queue[T]) PushFront(data T) {
 	if q.first == nil {
 		q.first = &element[T]{
@@ -38,6 +42,7 @@ func (q *Queue[T]) PushFront(data T) {
 	}
 }
 
+// PushBack pushes to the back of the queue.
 func (q *Queue[T]) PushBack(data T) {
 	if q.first == nil {
 		q.first = &element[T]{
@@ -52,6 +57,7 @@ func (q *Queue[T]) PushBack(data T) {
 	}
 }
 
+// Pop pops from the beginning of the queue.
 func (q *Queue[T]) Pop() (v Optional[T]) {
 	if q.first != nil {
 		v.Set(q.first.data)

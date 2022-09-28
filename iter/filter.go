@@ -25,6 +25,7 @@ func (iter *iterFilter[T]) GetPtr() *T {
 	return iter.inner.GetPtr()
 }
 
+// Filter filters the values of iterators.
 func Filter[T any](inner tl.Iter[T], fn tl.CompareFunc[T]) tl.Iter[T] {
 	return &iterFilter[T]{
 		inner: inner,

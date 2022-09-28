@@ -30,6 +30,7 @@ func (iter *iterRange[T]) GetPtr() *T {
 	return &iter.value
 }
 
+// Range creates an iterator over a range.
 func Range[T constraints.Integer](start, stop, step T) tl.Iter[T] {
 	return &iterRange[T]{
 		start: start, stop: stop, step: step,

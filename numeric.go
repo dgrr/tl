@@ -2,6 +2,7 @@ package tl
 
 import "golang.org/x/exp/constraints"
 
+// Max returns the maximum instance of a set of numbers.
 func Max[T constraints.Ordered](numbers ...T) (r T) {
 	if len(numbers) == 0 {
 		return

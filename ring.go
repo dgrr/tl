@@ -40,7 +40,10 @@ func NewRing[T any](size int) *Ring[T] {
 	return ring
 }
 
-func (ring *Ring[T]) Push(fn T) bool {
+// Push adds a value to the ring.
+//
+// If the ring is full Push returns false. If the task has been pushed it will return true.
+func (ring *Ring[T]) Push(value T) bool {
 	for {
 		head := atomic.LoadUint32(&ring.head)
 		tail := atomic.LoadUint32(&ring.tail)
@@ -52,7 +55,7 @@ func (ring *Ring[T]) Push(fn T) bool {
 		index := atomic.LoadUint32(&ring.index[head&ring.mask])
 		if index == head {
 			if atomic.CompareAndSwapUint32(&ring.head, head, head+1) {
-				ring.values[head&ring.mask] = fn
+				ring.values[head&ring.mask] = value
 
 				atomic.StoreUint32(&ring.index[head&ring.mask], head+1)
 
@@ -62,6 +65,7 @@ func (ring *Ring[T]) Push(fn T) bool {
 	}
 }
 
+// Pop takes a value from the ring. Returns the (value, true) or (value, false)
 func (ring *Ring[T]) Pop() (value T, ok bool) {
 	for {
 		head := ring.head

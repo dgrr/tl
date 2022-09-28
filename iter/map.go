@@ -26,6 +26,7 @@ func (iter *iterMap[T, V]) GetPtr() *V {
 	return &iter.current
 }
 
+// Map maps the values of an iterator using `conv`.
 func Map[T, V any](inner tl.Iter[T], conv func(T) V) tl.Iter[V] {
 	return &iterMap[T, V]{
 		inner: inner,

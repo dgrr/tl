@@ -32,6 +32,7 @@ func (iter *iterWindow[T]) GetPtr() *[]T {
 	return &iter.win
 }
 
+// Window returns an iterator containing the last `n` values.
 func Window[T any](inner tl.Iter[T], n int) tl.Iter[[]T] {
 	return &iterWindow[T]{
 		inner: inner,

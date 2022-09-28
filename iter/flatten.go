@@ -31,6 +31,7 @@ func (iter *iterFlatten[T]) GetPtr() *T {
 	return &iter.current
 }
 
+// Flatten flattens the elements of `inner`.
 func Flatten[T any](inner tl.Iter[[]T]) tl.Iter[T] {
 	return &iterFlatten[T]{
 		inner: inner,

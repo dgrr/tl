@@ -28,6 +28,7 @@ func (iter *iterSum[T]) GetPtr() *T {
 	return &iter.result
 }
 
+// Sum sums up all the elements inside an iterator.
 func Sum[T constraints.Integer | constraints.Float](inner tl.Iter[T]) tl.Iter[T] {
 	return &iterSum[T]{
 		inner: inner,

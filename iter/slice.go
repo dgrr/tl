@@ -41,6 +41,7 @@ func AppendTo[T any](vs []T, iter tl.Iter[T]) []T {
 	return vs
 }
 
+// ToSlice converts a iterator to a slice.
 func ToSlice[T any](iter tl.Iter[T]) []T {
 	newSlice := make([]T, 0)
 

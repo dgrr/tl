@@ -26,6 +26,7 @@ func (iter *iterNth[T]) GetPtr() *T {
 	return iter.val
 }
 
+// Nth takes the nth element of an iterator.
 func Nth[T any](inner tl.Iter[T], nth int) tl.Iter[T] {
 	for nth != 0 {
 		nth--

@@ -1,7 +1,9 @@
 package tl
 
+// Vec defines a slice of type T.
 type Vec[T any] []T
 
+// MakeVec returns a vector of type T with the elements `elmnts`.
 func MakeVec[T any](elmnts ...T) Vec[T] {
 	vc := Vec[T]{}
 	vc.Append(elmnts...)
@@ -9,6 +11,7 @@ func MakeVec[T any](elmnts ...T) Vec[T] {
 	return vc
 }
 
+// MakeVecSize returns a vector with size `size` and capacity `capacity`.
 func MakeVecSize[T any](size, capacity int) Vec[T] {
 	return (Vec[T])(make([]T, size, capacity))
 }

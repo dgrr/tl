@@ -30,6 +30,7 @@ func (iter *iterUnique[T]) GetPtr() *T {
 	return iter.inner.GetPtr()
 }
 
+// UniqueFn removes any duplicates from the iterator using `eq` as comparator.
 func UniqueFn[T any](inner tl.Iter[T], eq func(a, b T) bool) tl.Iter[T] {
 	return &iterUnique[T]{
 		inner: inner,
@@ -37,12 +38,14 @@ func UniqueFn[T any](inner tl.Iter[T], eq func(a, b T) bool) tl.Iter[T] {
 	}
 }
 
+// Unique removes any duplicates from the iterator.
 func Unique[T comparable](inner tl.Iter[T]) tl.Iter[T] {
 	return UniqueFn(inner, func(a, b T) bool {
 		return a == b
 	})
 }
 
+// Get returns the last element of the iterator.
 func Get[T any](iter tl.Iter[T]) T {
 	for iter.Next() {
 	}
